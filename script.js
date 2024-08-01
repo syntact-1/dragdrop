@@ -1,0 +1,33 @@
+let btn = document.getElementById("btn");
+let inp = document.getElementById("inp");
+let boxs = document.querySelectorAll(".box")
+let addbox = document.getElementById("add_box")
+let drag = null                                                
+btn.onclick = function (){
+    if(inp.value != ""){
+    boxs[0].innerHTML += `
+    <p id="item" draggable="true">${inp.value}</p>
+    `
+    inp.value ="";
+    }
+    dragitem()
+}
+function dragitem(){
+    let items = document.querySelectorAll("#item");
+    items.forEach(item =>{
+        item.addEventListener("dragstart",function(){
+            drag = item;
+        })
+        item.addEventListener("dragend",function(){
+            drag = null;
+        })
+    })
+    boxs.forEach(box=>{
+        box.addEventListener("dragover",function(e){
+            e.preventDefault()
+        })
+        box.addEventListener("drop",function(){
+            box.append(drag)
+        })
+    })
+}

@@ -1,0 +1,28 @@
+let inp = document.getElementById("inp")
+let btn = document.getElementById("btn")
+let boxs = document.querySelectorAll(".box")
+
+btn.onclick = function(){
+    boxs[0].innerHTML += `
+    <p id="item" draggable="true">${inp.value}</p>
+    `
+    inp.value =""
+    dragitem()
+}
+function dragitem(){
+    let item  = document.querySelectorAll("#item");
+    item.forEach(item =>{
+        item.addEventListener("dragstart",function(){
+            console.log("dragstart")
+        })
+        item.addEventListener("dragend",function(){
+            console.log("dragend")
+        })
+        boxs.forEach(box =>{
+            box.addEventListener("dragover",function(){
+                console.log("dragover")
+            })
+        })
+    })
+}
+
